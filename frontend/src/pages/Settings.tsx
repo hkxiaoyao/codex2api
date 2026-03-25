@@ -408,17 +408,17 @@ export default function Settings() {
                 <TableBody>
                   <TableRow>
                     <TableCell><Badge variant="default" className="text-[13px]">POST</Badge></TableCell>
-                    <TableCell className="font-mono text-[14px]">/v1/chat/completions</TableCell>
+                    <TableCell className="font-mono text-[20px]">/v1/chat/completions</TableCell>
                     <TableCell className="text-[14px] text-muted-foreground">{t('settings.openaiCompat')}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell><Badge variant="outline" className="text-[13px]">POST</Badge></TableCell>
-                    <TableCell className="font-mono text-[14px]">/v1/responses</TableCell>
+                    <TableCell className="font-mono text-[20px]">/v1/responses</TableCell>
                     <TableCell className="text-[14px] text-muted-foreground">{t('settings.responsesApi')}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell><Badge variant="secondary" className="text-[13px]">GET</Badge></TableCell>
-                    <TableCell className="font-mono text-[14px]">/v1/models</TableCell>
+                    <TableCell className="font-mono text-[20px]">/v1/models</TableCell>
                     <TableCell className="text-[14px] text-muted-foreground">{t('settings.modelList')}</TableCell>
                   </TableRow>
                 </TableBody>

@@ -563,6 +563,7 @@ export default function Accounts() {
         <Modal
           show={showAdd}
           title="添加账号"
+          contentClassName="sm:max-w-[640px]"
           onClose={() => setShowAdd(false)}
           footer={(
             <>
@@ -577,13 +578,13 @@ export default function Accounts() {
             <div>
               <label className="block mb-2 text-sm font-semibold text-muted-foreground">Refresh Token *</label>
               <textarea
-                className="w-full min-h-[96px] p-3 border border-input rounded-xl bg-background text-sm resize-y focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full min-h-[160px] p-3 border border-input rounded-xl bg-background text-sm resize-y focus:outline-none focus:ring-2 focus:ring-ring"
                 placeholder="每行一个 Refresh Token，支持批量粘贴"
                 value={addForm.refresh_token}
                 onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
                   setAddForm((form) => ({ ...form, refresh_token: event.target.value }))
                 }
-                rows={3}
+                rows={6}
               />
             </div>
             <div>
