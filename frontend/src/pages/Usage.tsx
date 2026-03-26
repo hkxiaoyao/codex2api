@@ -317,7 +317,7 @@ export default function Usage() {
             {/* 筛选栏 */}
             <div className="flex items-center gap-2 mb-4 flex-wrap">
               {/* 搜索框 */}
-              <div className="relative w-72">
+              <div className="relative w-80">
                 <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground pointer-events-none" />
                 <Input
                   className="pl-8 h-8 rounded-lg text-[13px]"
@@ -329,6 +329,8 @@ export default function Usage() {
 
               {/* 模型下拉 */}
               <Select
+                className="w-44"
+                compact
                 value={filterModel}
                 onValueChange={(v) => { setFilterModel(v); setPage(1) }}
                 placeholder={t('usage.allModels')}
@@ -340,6 +342,8 @@ export default function Usage() {
 
               {/* 端点下拉 */}
               <Select
+                className="w-52"
+                compact
                 value={filterEndpoint}
                 onValueChange={(v) => { setFilterEndpoint(v); setPage(1) }}
                 placeholder={t('usage.allEndpoints')}
@@ -352,6 +356,8 @@ export default function Usage() {
 
               {/* 类型下拉 */}
               <Select
+                className="w-32"
+                compact
                 value={filterStream}
                 onValueChange={(v) => { setFilterStream(v); setPage(1) }}
                 placeholder={t('usage.allTypes')}

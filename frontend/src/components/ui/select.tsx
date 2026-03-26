@@ -14,6 +14,7 @@ interface SelectProps {
   placeholder?: string
   disabled?: boolean
   className?: string
+  compact?: boolean
 }
 
 export function Select({
@@ -23,6 +24,7 @@ export function Select({
   placeholder = '请选择',
   disabled = false,
   className,
+  compact = false,
 }: SelectProps) {
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
@@ -60,7 +62,8 @@ export function Select({
         aria-haspopup="listbox"
         aria-expanded={open}
         className={cn(
-          'flex h-11 w-full items-center justify-between gap-3 rounded-xl border border-input bg-background px-3.5 text-left text-[15px] shadow-xs transition-[border-color,box-shadow,transform] outline-none',
+          'flex w-full items-center justify-between gap-3 border border-input bg-background text-left shadow-xs transition-[border-color,box-shadow,transform] outline-none',
+          compact ? 'h-8 rounded-lg px-2.5 text-[13px]' : 'h-11 rounded-xl px-3.5 text-[15px]',
           'hover:border-primary/30 hover:bg-accent/50',
           'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/20',
           'disabled:cursor-not-allowed disabled:opacity-60',
@@ -79,9 +82,9 @@ export function Select({
       </button>
 
       {open ? (
-        <div className="absolute top-[calc(100%+0.5rem)] left-0 right-0 z-50 overflow-hidden rounded-2xl border border-border bg-popover shadow-[0_18px_40px_hsl(258_30%_18%/0.12)] backdrop-blur-sm">
-          <div className="max-h-72 overflow-auto p-2">
-            <div role="listbox" aria-activedescendant={value || undefined} className="space-y-1">
+        <div className={cn('absolute top-[calc(100%+0.5rem)] left-0 z-50 overflow-hidden border border-border bg-popover shadow-[0_18px_40px_hsl(258_30%_18%/0.12)] backdrop-blur-sm', compact ? 'min-w-full rounded-lg' : 'right-0 rounded-2xl')}>
+          <div className={cn('max-h-72 overflow-auto', compact ? 'p-1' : 'p-2')}>
+            <div role="listbox" aria-activedescendant={value || undefined} className={compact ? 'space-y-0.5' : 'space-y-1'}>
               {options.map((option) => {
                 const isSelected = option.value === value
                 return (
@@ -92,7 +95,8 @@ export function Select({
                     role="option"
                     aria-selected={isSelected}
                     className={cn(
-                      'flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-[15px] transition-colors',
+                      'flex w-full items-center justify-between gap-3 text-left transition-colors',
+                      compact ? 'rounded-md px-2 py-1.5 text-[13px]' : 'rounded-xl px-3 py-2.5 text-[15px]',
                       isSelected
                         ? 'bg-primary/10 text-primary'
                         : 'text-foreground hover:bg-accent/70 hover:text-accent-foreground'
