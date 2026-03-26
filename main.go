@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 	"time"
 
@@ -214,6 +215,9 @@ func loggerMiddleware() gin.HandlerFunc {
 
 		email, _ := c.Get("x-account-email")
 		proxyURL, _ := c.Get("x-account-proxy")
+		modelVal, _ := c.Get("x-model")
+		effortVal, _ := c.Get("x-reasoning-effort")
+		tierVal, _ := c.Get("x-service-tier")
 
 		emailStr := ""
 		if e, ok := email.(string); ok && e != "" {
@@ -224,10 +228,26 @@ func loggerMiddleware() gin.HandlerFunc {
 			proxyStr = p
 		}
 
+		// 构建扩展标签
+		var tags []string
+		if m, ok := modelVal.(string); ok && m != "" {
+			tags = append(tags, m)
+		}
+		if e, ok := effortVal.(string); ok && e != "" {
+			tags = append(tags, "effort="+e)
+		}
+		if t, ok := tierVal.(string); ok && t != "" {
+			tags = append(tags, "fast")
+		}
+		tagStr := ""
+		if len(tags) > 0 {
+			tagStr = " " + strings.Join(tags, " ")
+		}
+
 		if emailStr != "" {
-			log.Printf("%s %s %d %v [%s] [%s]", c.Request.Method, c.Request.URL.Path, c.Writer.Status(), latency, emailStr, proxyStr)
+			log.Printf("%s %s %d %v%s [%s] [%s]", c.Request.Method, c.Request.URL.Path, c.Writer.Status(), latency, tagStr, emailStr, proxyStr)
 		} else {
-			log.Printf("%s %s %d %v", c.Request.Method, c.Request.URL.Path, c.Writer.Status(), latency)
+			log.Printf("%s %s %d %v%s", c.Request.Method, c.Request.URL.Path, c.Writer.Status(), latency, tagStr)
 		}
 	}
 }

@@ -402,6 +402,9 @@ func (h *Handler) Responses(c *gin.Context) {
 		c.Set("x-account-email", account.Email)
 		account.Mu().RUnlock()
 		c.Set("x-account-proxy", proxyURL)
+		c.Set("x-model", model)
+		c.Set("x-reasoning-effort", reasoningEffort)
+		c.Set("x-service-tier", serviceTier)
 		var firstTokenMs int
 		var usage *UsageInfo
 		ttftRecorded := false
@@ -689,6 +692,9 @@ func (h *Handler) ChatCompletions(c *gin.Context) {
 		c.Set("x-account-email", account.Email)
 		account.Mu().RUnlock()
 		c.Set("x-account-proxy", proxyURL)
+		c.Set("x-model", model)
+		c.Set("x-reasoning-effort", reasoningEffort)
+		c.Set("x-service-tier", serviceTier)
 		var firstTokenMs int
 		var usage *UsageInfo
 		ttftRecorded := false
