@@ -847,36 +847,28 @@ export default function Accounts() {
           contentClassName="sm:max-w-[420px]"
           onClose={() => setShowImportPicker(false)}
         >
-          <div className="space-y-3">
+          <div className="grid grid-cols-2 gap-3">
             <button
-              className="w-full rounded-xl border border-border p-4 text-left hover:bg-muted/50 transition-colors"
+              className="flex flex-col items-center gap-2 rounded-xl border border-border p-5 text-center hover:bg-muted/50 transition-colors"
               onClick={() => {
                 setShowImportPicker(false)
                 fileInputRef.current?.click()
               }}
             >
-              <div className="flex items-center gap-3">
-                <FileText className="size-5 text-muted-foreground" />
-                <div>
-                  <div className="font-medium">{t('accounts.importTxt')}</div>
-                  <div className="text-xs text-muted-foreground">{t('accounts.importTxtDesc')}</div>
-                </div>
-              </div>
+              <FileText className="size-8 text-muted-foreground" />
+              <div className="font-medium">{t('accounts.importTxt')}</div>
+              <div className="text-xs text-muted-foreground">{t('accounts.importTxtDesc')}</div>
             </button>
             <button
-              className="w-full rounded-xl border border-border p-4 text-left hover:bg-muted/50 transition-colors"
+              className="flex flex-col items-center gap-2 rounded-xl border border-border p-5 text-center hover:bg-muted/50 transition-colors"
               onClick={() => {
                 setShowImportPicker(false)
                 jsonInputRef.current?.click()
               }}
             >
-              <div className="flex items-center gap-3">
-                <FileJson className="size-5 text-muted-foreground" />
-                <div>
-                  <div className="font-medium">{t('accounts.importJson')}</div>
-                  <div className="text-xs text-muted-foreground">{t('accounts.importJsonDesc')}</div>
-                </div>
-              </div>
+              <FileJson className="size-8 text-muted-foreground" />
+              <div className="font-medium">{t('accounts.importJson')}</div>
+              <div className="text-xs text-muted-foreground">{t('accounts.importJsonDesc')}</div>
             </button>
           </div>
         </Modal>
